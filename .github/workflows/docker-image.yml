@@ -1,0 +1,25 @@
+name: Docker Push
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Build & Push to GitHub Package
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          PASSWORD: ${{ secrets.GHP_TOKEN }}
+          REGISTRY: "docker.pkg.github.com"
+          TAG_NAME: "latest"
