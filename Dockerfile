@@ -1,5 +1,4 @@
-FROM node:19-alpine
-
+FROM node:23-alpine
 
 RUN apk add --no-cache g++ make python3 util-linux
 
